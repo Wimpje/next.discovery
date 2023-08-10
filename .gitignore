@@ -1,0 +1,4 @@
+.DS_Store
+.env
+dataset/files
+node_modules
