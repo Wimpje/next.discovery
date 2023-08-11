@@ -1,6 +1,11 @@
-<header>
-  <h1>jurassic.ai</h1>
-</header>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<div class="md:container md:mx-auto flex flex-col h-screen min-h-screen p-10">
+  <header class="h-20">
+    <h1 class="text-3xl font-bold">jurassic.ai</h1>
+  </header>
+  <main class="flex-1 overflow-y-auto">
+    <router-outlet></router-outlet>
+  </main>
+  <footer class="h-20 flex-none text-center">
+    <p class="text-sm text-gray-600">© 2023 jurassic.ai</p>
+  </footer>
+</div>
