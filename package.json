@@ -1,0 +1,31 @@
+{
+  "name": "next.discovery",
+  "version": "1.0.0",
+  "description": "Code from the IGeLU Developers day 2023 presentation 'How to build the next discovery experience'",
+  "main": "index.js",
+  "scripts": {
+    "getdata": "node dataset/getDinosaurs.mjs",
+    "senddatatoai21": "node dataset/sendToAI21.mjs",
+    "updatemetadata": "node dataset/updateMetadata.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wimpje/next.discovery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wimpje/next.discovery/issues"
+  },
+  "homepage": "https://github.com/Wimpje/next.discovery#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.3.0",
+    "@typescript-eslint/parser": "^6.3.0",
+    "eslint": "^8.46.0"
+  }
+}
