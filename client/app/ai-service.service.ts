@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, catchError, of } from 'rxjs';
 import { Message } from 'types/types';
 
 @Injectable({
@@ -29,10 +29,26 @@ export class AiService {
   getAnswer(question: string) {
     this.$messageSource.next({user: 'me', text: question, date: new Date()})
     this.requestInProgress = true
-    this.http.post('/api/answer', { question }).subscribe({
-      next: (data: any) => {
-        this.$messageSource.next({ user: 'dino', text: data, date: new Date() })
-        this.requestInProgress = false
+    this.http.post('/api/answer', { question }).pipe(
+      // this catches any HTTP error, and returns an 'error' message, by toggling error: true
+      // if we would let the error propagate, the observable would stop sending new results
+      // since observables end on error.
+      catchError((err) => {
+        // send a fake message, the code showing the messages will handle it
+        return of({ user: 'dino', text: err.error?.error ?? 'An error occurred', date: new Date(), error: true})
+      })
+     ).subscribe( {
+       next: (data: any) => {
+         if (data.error) {
+           this.$messageSource.next(data)
+         }
+         else if(data.answerInContext) {
+           this.$messageSource.next({ user: 'dino', text: data.answer, date: new Date() })
+         }
+         else if(!data.answerInContext) {
+          this.$messageSource.next({ user: 'dino', text: "Sorry... I don't know! Please ask me something else!", date: new Date() })
+        }
+         this.requestInProgress = false
       },
       error: (err) => {
         this.requestInProgress = false
