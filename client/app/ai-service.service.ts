@@ -42,8 +42,17 @@ export class AiService {
          if (data.error) {
            this.$messageSource.next(data)
          }
-         else if(data.answerInContext) {
-           this.$messageSource.next({ user: 'dino', text: data.answer, date: new Date() })
+         else if (data.answerInContext) {
+           const sources = []
+           let sourceLimit = 5
+           let sourceCount = 0
+           for (const source of data.sources) {
+              sourceCount++
+              if (sourceCount < sourceLimit && source.publicUrl) {
+                sources.push({ url: source.publicUrl, name: source.publicUrl?.replace('https://en.wikipedia.org/wiki/', ''), highlights: source.highlights })
+              }
+            }
+           this.$messageSource.next({ user: 'dino', text: data.answer, date: new Date(), sources: sources })
          }
          else if(!data.answerInContext) {
           this.$messageSource.next({ user: 'dino', text: "Sorry... I don't know! Please ask me something else!", date: new Date() })
@@ -56,8 +65,8 @@ export class AiService {
     })
   }
 
-  // this just returns two test message to test the UI
-  testUi() {
+  // this just returns two  message to initialize the UI
+  displayInitial() {
     this.$messageSource.next({ user: 'me', text: 'Can you help me answer a question about stegosauruses?', date: new Date() })
     this.$messageSource.next({ user: 'dino', text: 'Sure! I know everything about dinosaurs!', date: new Date() })
   }

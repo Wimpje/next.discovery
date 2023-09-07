@@ -8,6 +8,8 @@ import { AboutComponent } from './about/about.component';
 import { MessageComponent } from './chat/message/message.component';
 import { InputboxComponent } from './chat/inputbox/inputbox.component'
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { LoadingComponent } from './chat/loading/loading.component';
 
 @NgModule({
    declarations: [
@@ -15,12 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
       ChatComponent,
       AboutComponent,
       MessageComponent,
-      InputboxComponent
+      InputboxComponent,
+      LoadingComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
-      HttpClientModule
+      HttpClientModule,
+      FormsModule
    ],
    providers: [],
    bootstrap: [AppComponent]
