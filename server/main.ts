@@ -8,6 +8,7 @@ import history from 'connect-history-api-fallback'
 // the next 3 lines are needed to get the current directory name, since we are marked as module in package.json
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { ApiRouter } from './routes/api.js'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // initialise express webserver
@@ -25,6 +26,9 @@ if (app.get('env') === 'production') {
 // set up middleware for parsing incoming request bodies as json and urlencoded data
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
+
+app.use('/api', ApiRouter)
+
 
 // test endpoint
 app.get('/ping', (req: any, res: any, _next: any) => {
