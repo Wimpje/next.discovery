@@ -7,6 +7,7 @@ import { ChatComponent } from './chat/chat.component';
 import { AboutComponent } from './about/about.component';
 import { MessageComponent } from './chat/message/message.component';
 import { InputboxComponent } from './chat/inputbox/inputbox.component'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
    declarations: [
@@ -18,7 +19,8 @@ import { InputboxComponent } from './chat/inputbox/inputbox.component'
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule
+      AppRoutingModule,
+      HttpClientModule
    ],
    providers: [],
    bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Message } from 'types/types';
+import { AiService } from '../ai-service.service';
 
 @Component({
   selector: 'app-chat',
@@ -7,8 +8,18 @@ import { Message } from 'types/types';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent {
-  chatMessages: Message[] = [
-    { user: 'me', text: 'Can you help me answer a question about stegosauruses?', date: new Date() },
-    { user: 'dino', text: 'Sure! I know everything about dinosaurs!', date: new Date() }
-  ]
+  chatMessages: Message[] = []
+
+  get showLoader() {
+    return this.aiService.loading
+  }
+  constructor(private aiService: AiService) {
+    this.aiService.onMessage().subscribe((message) => {
+      this.chatMessages.push(message)
+    })
+  }
+
+  ngOnInit() {
+    this.aiService.testUi()
+  }
 }
