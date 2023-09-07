@@ -11,26 +11,26 @@
         }
       },
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "client",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/jurassic.ai",
-            "index": "src/index.html",
-            "main": "src/main.ts",
+            "index": "client/index.html",
+            "main": "client/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "tsconfig.client.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "client/favicon.ico",
+              "client/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "client/styles.scss"
             ],
             "scripts": []
           },
@@ -89,11 +89,11 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "client/favicon.ico",
+              "client/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "client/styles.scss"
             ],
             "scripts": []
           }

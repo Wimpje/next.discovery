@@ -1,4 +1,4 @@
-# Dinopedia Q&A
+# jurassic.ai Q&A
 This is an example application to show how to implement a question and answering application based on AI21 Contextual Answering API. 
 
 The project uses Angular and Tailwind CSS. It uses a data set retrieved from 
