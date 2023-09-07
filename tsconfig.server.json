@@ -2,13 +2,14 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/app",
+    "outDir": "./server",
+    "moduleResolution": "node16",
     "types": []
   },
   "files": [
-    "src/main.ts"
+    "server/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "server/**/*.d.ts"
   ]
 }
